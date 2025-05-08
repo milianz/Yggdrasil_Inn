@@ -2,22 +2,34 @@ package org.milianz.yggdrasil_inn.Domain.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true) // Añade esta línea para solucionar el warning
 @Table(name = "employee")
-public class Employee extends User{
-    @ManyToOne
-    @JoinColumn(name = "posada_id")
-    private Posada posada;
+public class Employee extends User {
+    private String department;
+    private String branch;
 
-    private String departamento;
+    @Column(name = "supervisor_id")
+    private UUID supervisor;
 
-    @ManyToOne
-    @JoinColumn(name = "superior_id")
-    private Employee superior;  // Relación recursiva
+    private boolean isCoordinator;
+    private boolean isSupervisor;
 
-    private boolean esCoordinador;
+
+    public void setIsCoordinator(boolean isCoordinator) {
+        this.isCoordinator = isCoordinator;
+    }
+
+
+
+    public void setIsSupervisor(boolean isSupervisor) {
+        this.isSupervisor = isSupervisor;
+    }
+
+
 }

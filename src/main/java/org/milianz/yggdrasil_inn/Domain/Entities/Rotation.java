@@ -1,7 +1,8 @@
 package org.milianz.yggdrasil_inn.Domain.Entities;
+
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -14,12 +15,12 @@ public class Rotation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String month;
-    private String turno;
+    private LocalDate rotationDate;
+    private String shift;
     private boolean active;
 
     @ManyToOne
-    @JoinColumn(name = "emlployee_id")
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @ManyToOne

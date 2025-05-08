@@ -1,6 +1,11 @@
 package org.milianz.yggdrasil_inn.Domain.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-public interface iGenericRepository <T, ID> extends JpaRepository<T, ID> {
+import java.io.Serializable;
+
+@NoRepositoryBean
+public interface iGenericRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
+    // Métodos genéricos adicionales si son necesarios
 }
